@@ -1,0 +1,19 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.cursorrules
+
+# Auto-generated files
+src/types/import/auto-imports.d.ts
+src/types/import/components.d.ts
+.auto-import.json
+
+.idea
+.vscode
+
+# 本地环境变量文件（可能含敏感密钥，禁止提交；请用 .env.example 作模板，真实值通过本地文件或 CI 注入）
+.env
+.env.*
+!.env.example

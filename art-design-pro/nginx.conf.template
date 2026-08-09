@@ -1,0 +1,56 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # ---------- 压缩 ----------
+    gzip on;
+    gzip_min_length 1k;
+    gzip_comp_level 5;
+    gzip_buffers 4 16k;
+    gzip_types text/plain text/css application/json application/javascript application/x-javascript
+               text/xml application/xml application/xml+rss text/javascript image/svg+xml application/octet-stream;
+    gzip_proxied any;
+    gzip_vary on;
+
+    # ---------- 静态资源(带内容哈希，长期缓存) ----------
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri =404;
+    }
+
+    # ---------- HTML 不缓存，保证发版即时生效 ----------
+    location = /index.html {
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+
+    # ---------- 后端 API 反向代理(同源部署，规避跨域) ----------
+    # BACKEND_API 由容器启动时通过环境变量注入(官方 nginx 镜像模板机制)
+    # 例如: docker run -e BACKEND_API=http://ruoyi-backend:8080 ...
+    location /prod-api/ {
+        proxy_pass http://${BACKEND_API}/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # SSE / 长连接：关闭缓冲、保持长连接
+        # 说明：当前前端消息推送使用 SSE 传输；若改为 WebSocket，需将下方
+        # proxy_set_header Connection "" 改为 "upgrade" 并补充 Upgrade 头。
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
+
+    # ---------- SPA history 模式回退 ----------
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

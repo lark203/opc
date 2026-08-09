@@ -1,0 +1,15 @@
+# 依赖与构建产物（构建阶段会重新安装/生成）
+node_modules
+dist
+coverage
+
+# 本地私密环境文件：含真实密钥的 .env 禁止进入镜像
+# 注意：仅忽略名为 .env 的文件；已提交的 .env.production 仍需参与构建(其中敏感值已为占位符)
+.env
+
+# 编辑器/系统文件
+.DS_Store
+.idea
+.vscode
+*.log
+*.local
