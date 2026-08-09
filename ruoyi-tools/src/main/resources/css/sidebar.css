@@ -1,0 +1,149 @@
+/* ==========================================================================
+   分类 3：侧边栏大容器骨架与滚动容器（你现有的基础样式，完整保留）
+   ========================================================================== */
+
+.sidebar {
+    -fx-background-color: -color-bg-subtle; /* 使用 AtlantaFX 的内置变量：次要背景色 */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 2, 0); /* 三路模糊投影：向右偏移 2px */
+    -fx-border-color: transparent -color-border-muted transparent transparent; /* 右侧边框区分 */
+    -fx-border-width: 0 1px 0 0;
+}
+
+.main-content-area {
+    -fx-background-color: -color-bg-default;
+}
+
+/*.sidebar:collapsed .brand-box {
+    -fx-alignment: CENTER;
+}
+
+.no-scrollbar-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.no-scrollbar-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.no-scrollbar-scroll-pane .scroll-bar {
+    -fx-opacity: 0;
+    -fx-padding: -10px; !* 将其移出可见区域 *!
+}*/
+
+/*.toggle-switch {
+    -fx-cursor: hand;
+}*/
+
+
+/* ==========================================================================
+   分类 4：菜单、行容器与一体化高亮样式
+   ========================================================================== */
+
+/* 1. 默认状态下的通用菜单行容器 */
+.sidebar .nav-row-box {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12px;
+    -fx-padding: 10px 0px 10px 13px;
+    -fx-background-radius: 6px;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/* 2. 鼠标悬停在普通行（非选中态）的底色 */
+.sidebar .nav-row-box:hover {
+    -fx-background-color: derive(-color-bg-subtle, -10%);
+}
+
+/* 3. 当行容器处于选中高亮状态时，填充整行背景色（利用 derive 向下物理压暗 10%，带来凹陷质感） */
+.sidebar .nav-row-box:selected {
+    -fx-background-color: derive(-color-bg-subtle, -10%);
+}
+
+/* 4. 默认菜单状态下的文本与图标基础颜色 */
+.sidebar .nav-row-box .nav-text {
+    -fx-text-fill: -color-fg-default;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.sidebar .nav-row-box .nav-icon {
+    -fx-icon-color: -color-fg-muted;
+    -fx-icon-size: 16px;
+}
+
+/* 5. 激活选中时，内部文本和图标的一体化高亮变色 */
+.sidebar .nav-row-box:selected .nav-text {
+    -fx-text-fill: -color-accent-emphasis;
+    -fx-font-weight: bold;
+}
+
+.sidebar .nav-row-box:selected .nav-icon {
+    -fx-icon-color: -color-accent-emphasis;
+}
+
+/* 6. 专属精细高亮小竖杠的基础样式 */
+.sidebar .nav-row-box .nav-indicator {
+    -fx-fill: -color-accent-emphasis;
+}
+
+
+/* ==========================================================================
+   二级折叠菜单专项美化
+   ========================================================================== */
+
+/* 目录大组头部行默认样式 */
+.sidebar .nav-folder-row {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 12px;
+    -fx-padding: 10px 0px 10px 13px;
+    -fx-background-radius: 6px;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+/*.sidebar .nav-folder-row:hover {*/
+/*    -fx-background-color: -color-bg-subtle;*/
+/*}*/
+
+.sidebar .nav-folder-row .folder-text {
+    -fx-text-fill: -color-fg-default;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.sidebar .nav-folder-row .folder-icon {
+    -fx-icon-color: -color-fg-default;
+    -fx-icon-size: 16px;
+}
+
+.sidebar .nav-folder-row .arrow-icon {
+    -fx-icon-color: -color-fg-muted;
+    -fx-icon-size: 16px;
+}
+
+/* 承载子菜单的阶屉收纳盒（默认提供向右 16px 的精致缩进） */
+.sidebar .nav-children-box {
+    -fx-spacing: 8px;
+    -fx-padding: 0 0 0 16px;
+}
+
+/* 微调嵌入在深层子容器里的二级菜单文本尺寸与间距，让层次更精致 */
+.sidebar .nav-children-box .nav-row-box .nav-text {
+    -fx-font-size: 14px;
+}
+
+/*.sidebar .nav-children-box .nav-row-box {
+    -fx-padding: 8px 12px 8px 8px; !* 上下左右间距变紧凑，迎合二级菜单视觉 *!
+}*/
+
+/* 当子菜单内部有按钮被选中时，让父级文件夹目录也保持稍微亮起（可选视觉联动） */
+.sidebar .nav-folder-row:selected .folder-text {
+    -fx-text-fill: -color-accent-emphasis;
+}
+
+.sidebar .nav-folder-row:selected .folder-icon {
+    -fx-icon-color: -color-accent-emphasis;
+}

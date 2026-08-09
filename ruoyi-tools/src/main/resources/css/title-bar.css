@@ -1,0 +1,94 @@
+/* ==========================================================================
+   分类 2：顶部状态栏与无边框控制系统按钮
+   ========================================================================== */
+
+/* 顶部状态栏大容器样式 */
+.header-bar {
+    -fx-background-color: -color-bg-default; /* 主背景色 */
+    -fx-z-index: 1000; /* 确保它在最顶层 */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 5); /* 加一点投影，视觉上隔离内容区 */
+}
+
+/* 顶部自带微型进度条 */
+.header-progress-bar {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.header-progress-bar .bar {
+    -fx-background-insets: 0;
+    -fx-background-color: -color-accent-emphasis; /* 深色模式下也很明显的亮色 */
+}
+
+/* Windows 风格标题栏控制按钮 */
+.control-btn {
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+.control-btn:hover {
+    -fx-background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* Windows 风格关闭按钮特殊处理 */
+.control-close-btn {
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+.control-close-btn:hover {
+    -fx-background-color: #e81123 !important; /* Windows 经典红 */
+}
+
+/* 基础 Mac 按钮样式 (红绿灯) */
+.mac-close, .mac-min, .mac-max {
+    -fx-background-radius: 50;
+    -fx-min-width: 12px;
+    -fx-min-height: 12px;
+    -fx-max-width: 12px;
+    -fx-max-height: 12px;
+    -fx-padding: 0;
+}
+
+/* 默认隐藏图标，只有鼠标悬停在标题栏上时才显示（模仿原生 Mac） */
+.mac-close .ikonli-font-icon,
+.mac-min .ikonli-font-icon,
+.mac-max .ikonli-font-icon {
+    -fx-icon-size: 8px;
+    -fx-opacity: 0;
+}
+
+.title-bar:hover .ikonli-font-icon {
+    -fx-opacity: 1;
+}
+
+/* Mac 三色按钮专属设定 */
+.mac-close {
+    -fx-background-color: #ff5f56;
+}
+
+/* 红色 */
+.mac-min {
+    -fx-background-color: #ffbd2e;
+}
+
+/* 黄色 */
+.mac-max {
+    -fx-background-color: #27c93f;
+}
+
+/* 绿色 */
+
+/* Mac 按钮悬停时的深色效果 */
+.mac-close:hover {
+    -fx-background-color: #e0443e;
+}
+
+.mac-min:hover {
+    -fx-background-color: #dea123;
+}
+
+.mac-max:hover {
+    -fx-background-color: #1aab2e;
+}

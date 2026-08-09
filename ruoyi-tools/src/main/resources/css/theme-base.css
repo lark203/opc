@@ -1,0 +1,171 @@
+/* ==========================================================================
+   分类 1：全局基础样式与组件微调
+   ========================================================================== */
+
+/* 统一表单的 Label 样式 ProfileView - 让表单的 Label 字体稍微加粗一点 */
+.grid-pane .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-fg-muted;
+    -fx-min-width: USE_PREF_SIZE; /* 即使显示不全也强制不换行 */
+}
+
+/* 统一输入框的圆角 */
+.text-field, .text-area, .combo-box {
+    -fx-background-radius: 6px;
+}
+
+/* 当文本框处于危险状态时（AtlantaFX 伪类）加粗边框提醒 */
+.text-field:danger {
+    -fx-border-color: -color-danger-emphasis;
+    -fx-border-width: 2px;
+}
+
+/* 调整 Separator 的间距 */
+.separator {
+    -fx-padding: 10px 0 10px 0;
+}
+
+/* 进度条样式微调 */
+.progress-bar {
+    -fx-indeterminate-bar-animation-speed: 2;
+}
+
+/* 全局加载遮罩层 - 确保遮罩捕获所有鼠标事件，防止穿透点击 */
+.global-mask {
+    /* 半透明背景，带有一点模糊效果（如果硬件支持） */
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-mouse-transparent: false;
+}
+
+.global-mask .label {
+    -fx-text-fill: white;
+    -fx-font-size: 1.2em;
+}
+
+/* 进度环的颜色建议与主题色保持一致 */
+.ring-progress-indicator .percentage {
+    -fx-fill: -color-accent-emphasis;
+}
+
+/* 轻微的高斯模糊，随动画消失 */
+.main-layout-entry {
+    -fx-effect: dropshadow(three-pass-box, white, 50, 0, 0, 0);
+}
+
+/* 对话框背景遮罩微调 */
+.dialog-pane {
+    -fx-background-color: -color-bg-default;
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: -color-bg-subtle;
+}
+
+/* 头像容器的外圆环及悬停效果 */
+.avatar-container {
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 2px;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-padding: 2px;
+}
+
+.avatar-container:hover {
+    -fx-border-color: -color-accent-emphasis;
+    -fx-effect: dropshadow(three-pass-box, -color-accent-muted, 10, 0.5, 0, 0);
+}
+
+/* 红点样式与消息通知相关 */
+.notification-badge {
+    -fx-background-color: -color-danger-emphasis;
+    -fx-min-width: 8px;
+    -fx-min-height: 8px;
+    -fx-max-width: 8px;
+    -fx-max-height: 8px;
+    -fx-background-radius: 100;
+}
+
+.notice-selector-popup {
+    -fx-translate-x: -8px;
+}
+
+.message-list-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.message-cell {
+    -fx-padding: 8px;
+    -fx-background-color: transparent;
+    -fx-border-color: -color-border-subtle;
+    -fx-border-width: 0 0 1px 0; /* 只要下边框 */
+    -fx-cursor: hand;
+}
+
+.message-cell:hover {
+    -fx-background-color: -color-bg-subtle;
+}
+
+.message-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-fg-default;
+}
+
+.message-content {
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.popover .button.link:hover {
+    -fx-text-fill: -color-danger-emphasis;
+}
+
+/* 主题选择相关 */
+.theme-selector-popup {
+    -fx-translate-x: -16px;
+}
+
+.theme-thumbnail {
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+    -fx-alignment: CENTER;
+}
+
+.theme-thumbnail:hover {
+    -color-thumbnail-border: -color-accent-muted;
+}
+
+.theme-thumbnail:selected {
+    -color-thumbnail-border: -color-accent-emphasis;
+}
+
+.theme-thumbnail > .label {
+    -fx-underline: true;
+}
+
+/* 系统右键菜单基础样式 */
+.system-context-menu {
+    -fx-min-width: 160px;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
+
+.system-context-menu .menu-item {
+    -fx-padding: 6px 20px 6px 20px;
+}
+
+.system-context-menu .menu-item:focused {
+    -fx-background-color: -color-accent-emphasis;
+}
+
+.system-context-menu .menu-item:disabled {
+    -fx-opacity: 0.5;
+}

@@ -1,0 +1,82 @@
+/* ==========================================================================
+   分类 4：新旧按钮样式转换、行容器、选中态一体化高亮
+   ========================================================================== */
+
+/* 1. 【原结构样式】默认状态下的行容器 */
+.sidebar .nav-row-box {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/* 2. 【原结构样式】当行容器检测到内部按钮选中时，填充整行背景色 */
+.sidebar .nav-row-box:selected {
+    -fx-background-color: -color-bg-subtle;
+}
+
+/* 3. 【原结构样式】清洗内部的 ToggleButton，防止其自身背景干扰外层 HBox */
+.sidebar .nav-row-box .toggle-button {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+/* 4. 【原结构样式】选中时内部文本和图标的一体化高亮 */
+.sidebar .nav-row-box:selected .toggle-button {
+    -fx-text-fill: -color-accent-emphasis;
+}
+
+.sidebar .nav-row-box:selected .toggle-button .ikonli-font-icon {
+    -fx-icon-color: -color-accent-emphasis;
+}
+
+/* 5. 【原结构样式】目录大组行默认样式 */
+.sidebar .nav-folder-row {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.sidebar .nav-folder-btn {
+    -fx-background-color: transparent !important;
+    -fx-padding: 10px 4px;
+}
+
+/* 当子菜单 box 内部有按钮被选中时，让父级文件夹目录也保持稍微亮起 */
+.sidebar .nav-folder-row:has(+ .vbox:selected) {
+    -fx-border-color: transparent transparent transparent -color-border-default;
+    -fx-border-width: 0 0 0 2px;
+}
+
+/* 微调嵌入在子容器里的二级菜单按钮尺寸，让它更精致 */
+.sidebar .vbox .nav-row-box .toggle-button {
+    -fx-font-size: 12px; /* 二级菜单字体略微缩小 */
+    -fx-padding: 8px 12px 8px 4px; /* 上下间距变紧凑 */
+}
+
+
+/* ==========================================================================
+   【新版自绑定方案创造扩充】补充针对纯 Java 自绑定按钮高亮的类定义（无缝接入）
+   ========================================================================== */
+
+/* 对应我们最终定稿的无动画纯净绑定 Java 方案 */
+.pure-menu-btn {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.pure-menu-btn:hover {
+    -fx-background-color: #202020 !important; /* 悬停微亮 */
+}
+
+/* 为文件夹头部按钮定制 */
+.pure-folder-header {
+    -fx-background-color: transparent !important;
+    -fx-cursor: hand;
+}
+
+.pure-folder-header:hover {
+    -fx-background-color: #202020 !important;
+    -fx-background-radius: 6px;
+}

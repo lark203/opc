@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.atlantafx</groupId>
+    <artifactId>ruoyi-tools</artifactId>
+    <version>1.0</version>
+    <name>ruoyi-tools</name>
+    <description>ruoyi工具集</description>
+
+    <properties>
+        <app.name>ruoyi工具集</app.name>
+        <app.version>${project.version}</app.version>
+        <app.mainClass>com.atlantafx.Main</app.mainClass>
+        <java.version>25</java.version>
+        <target.java.version>25</target.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>${target.java.version}</maven.compiler.source>
+        <maven.compiler.target>${target.java.version}</maven.compiler.target>
+
+        <javafx.version>26</javafx.version>
+        <atlantafx.version>2.1.0</atlantafx.version>
+        <ikonli.version>12.4.0</ikonli.version>
+        <guava.version>33.5.0-jre</guava.version>
+        <fastjson2.version>2.0.61</fastjson2.version>
+        <commons-lang3.version>3.20.0</commons-lang3.version>
+        <jackson-databind.version>2.21.1</jackson-databind.version>
+        <sql2o.version>1.9.1</sql2o.version>
+        <sqlite-jdbc.version>3.51.2.0</sqlite-jdbc.version>
+        <logback-classic.version>1.5.32</logback-classic.version>
+        <classgraph.version>4.8.184</classgraph.version>
+    </properties>
+
+    <!-- 依赖声明 -->
+    <dependencies>
+        <!-- javafx依赖 -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- guava 工具类 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- 样式依赖 -->
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+            <version>${atlantafx.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>javafx-controls</artifactId>
+                    <groupId>org.openjfx</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 图标库依赖 -->
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>${ikonli.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-materialdesign2-pack</artifactId>
+            <version>${ikonli.version}</version>
+        </dependency>
+
+        <!-- json依赖 -->
+        <!--<dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+
+        <!-- apache工具类 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <!--数据库-->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>${sqlite-jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sql2o</groupId>
+            <artifactId>sql2o</artifactId>
+            <version>${sql2o.version}</version>
+        </dependency>
+
+        <!--日志依赖-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>${classgraph.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.43</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- 确保 src/main/resources 下的所有文件都被复制到 target/classes -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.github.fvarrui</groupId>
+                <artifactId>javapackager</artifactId>
+                <version>1.7.6</version>
+                <executions>
+                    <execution>
+                        <id>bundling-for-windows</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <name>ruoyi工具集</name>
+                            <displayName>ruoyi管理平台</displayName>
+                            <version>${project.version}</version>
+
+                            <!-- 启动类 -->
+                            <mainClass>com.atlantafx.Main</mainClass>
+                            <!-- 绑定自定义JRE路径-->
+                            <bundleJre>true</bundleJre>
+                            <!-- 生成安装文件 -->
+                            <generateInstaller>false</generateInstaller>
+                            <!-- 管理员权限 -->
+                            <administratorRequired>false</administratorRequired>
+                            <!-- 操作系统-->
+                            <platform>windows</platform>
+                            <!--vm参数-->
+                            <vmArgs>--enable-native-access=javafx.graphics --enable-native-access=org.xerial.sqlitejdbc -Xms256m -Xmx2048m -XX:+UseZGC -XX:+ZGenerational -XX:ZUncommitDelay=60 -Djdk.nio.maxCachedBufferSize=262144 -Dprism.dirtyopts=true -Dprism.lcdtext=true</vmArgs>
+                            <!--详细参数配置-->
+                            <winConfig>
+                                <!-- 软件图标 -->
+                                <icoFile>${project.basedir}/src/main/resources/assets/icons/app.ico</icoFile>
+                                <companyName>量子科技团队</companyName>
+                                <fileDescription>量子科技探索客户端</fileDescription>
+                                <copyright>Copyright 2026</copyright>
+                                <generateSetup>false</generateSetup>
+                                <generateMsi>false</generateMsi>
+                                <generateMsm>false</generateMsm>
+                            </winConfig>
+                        </configuration>
+                    </execution>
+
+                    <!--<execution>
+                        <id>bundling-for-mac</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <name>QuantumTech</name>
+                            <displayName>量子科技管理平台</displayName>
+                            <version>${project.version}</version>
+                            <mainClass>com.atlantafx.Main</mainClass>
+                            <bundleJre>true</bundleJre>
+                            <platform>mac</platform>
+
+                            <generateInstaller>false</generateInstaller>
+
+                            <vmArgs>&#45;&#45;enable-native-access=javafx.graphics &#45;&#45;enable-native-access=org.xerial.sqlitejdbc -Xms128m -Xmx512m -XX:+UseZGC -Djdk.nio.maxCachedBufferSize=262144 -Dprism.dirtyopts=true</vmArgs>
+
+                            <macConfig>
+                                <icnsFile>${project.basedir}/src/main/resources/assets/icons/app.icns</icnsFile>
+
+                                <bundleId>com.atlantafx.quantumtech</bundleId>
+
+                                <bundleName>量子科技</bundleName>
+
+                                <category>Utilities</category>
+                            </macConfig>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>bundling-for-linux</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                        <configuration>
+                            <name>quantum-tech</name>
+                            <displayName>量子科技管理平台</displayName>
+                            <version>${project.version}</version>
+                            <mainClass>com.atlantafx.Main</mainClass>
+                            <bundleJre>true</bundleJre>
+                            <platform>linux</platform>
+
+                            <generateInstaller>false</generateInstaller>
+
+                            <vmArgs>&#45;&#45;enable-native-access=javafx.graphics &#45;&#45;enable-native-access=org.xerial.sqlitejdbc -Xms128m -Xmx512m -XX:+UseZGC -Djdk.nio.maxCachedBufferSize=262144 -Dprism.dirtyopts=true</vmArgs>
+
+                            <linuxConfig>
+                                <pngFile>${project.basedir}/src/main/resources/assets/icons/app.png</pngFile>
+
+                                <category>Development;Keywords=JavaFX;Quantum;</category>
+                            </linuxConfig>
+                        </configuration>
+                    </execution>-->
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

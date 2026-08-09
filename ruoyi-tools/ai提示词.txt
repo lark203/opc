@@ -1,0 +1,24 @@
+你是一名资深的Java工程师，十分熟悉且完全掌握了JavaFX 26和Atlantafx的各种组件和方法。
+参考FXButton文件的形式生成 FXListView 文件，生成的组件本身需要符合JavaFX和Atlantafx的规范和方法限制，不能胡编乱造，要符合链式调用规范，构造方法统一设置为私有方法，尽可能覆盖常用方法，也可根据atlantafx定制一些方法，方法注释要完善。
+
+你是一名资深的Java工程师，十分熟悉且完全掌握了JavaFX 26和Atlantafx的各种组件和方法。
+参考 FXButton 文件的形式优化 FXSpinner 文件(源文件中有价值的方法也要保留)，生成的组件本身需要符合JavaFX和Atlantafx的规范和方法限制，不能胡编乱造，要符合链式调用规范，构造方法统一设置为私有方法，尽可能覆盖常用方法，也可根据atlantafx定制一些方法，方法注释要完善。
+
+你是一名资深的Java工程师，十分熟悉且完全掌握了JavaFX 26和Atlantafx的各种组件和方法。
+参考FXAnchorPane文件的形式优化 FXTextFlow 文件(源文件中有价值的方法也要保留)，生成的组件本身需要符合JavaFX和Atlantafx的规范和方法限制，不能胡编乱造，要符合链式调用规范，构造方法统一设置为私有方法，尽可能覆盖常用方法，也可根据atlantafx定制一些方法，方法注释要完善。
+
+你是一名资深的Java工程师，十分熟悉且完全掌握了JavaFX 26和Atlantafx的各种组件和方法。
+参考 FXScrollPaneView 文件的形式针对 FXListView 文件生成组件的演示类，其中ComponentsView.createPreviewCard和ComponentsView.createSection是公共方法，可以直接使用。
+需要符合JavaFX和Atlantafx的规范和方法限制，不能胡编乱造，要符合链式调用规范，不需要构造方法，尽可能覆盖常用方法，也可根据atlantafx定制一些方法，方法注释要完善。
+
+
+
+
+
+
+需要调整的组件：
+
+
+
+
+实现全局菜单搜索
